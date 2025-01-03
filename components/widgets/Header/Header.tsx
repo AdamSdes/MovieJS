@@ -43,18 +43,26 @@ const Header = () => {
                     </nav>
 
                     <div className="flex items-center gap-4">
+                    <Link href="/login">
                         <Button 
                             variant="ghost" 
                             className="text-white/80 hover:text-white hover:bg-white/5 h-11 px-6 rounded-[14px] transition-all duration-300"
                         >
+                            <Link href="/login">
                             Вхід
+                            </Link>
                         </Button>
+                        </Link>
+                        <Link href="register">
                         <Button 
                             variant="default"
                             className="bg-[rgb(195,187,175)] hover:bg-white/20 text-black h-11 px-6 font-medium rounded-[14px] transition-all duration-300 backdrop-blur-sm"
                         >
+                            <Link href="register">
                             Реєстрація
+                            </Link>
                         </Button>
+                        </Link>
                     </div>
                 </div>
             </div>
