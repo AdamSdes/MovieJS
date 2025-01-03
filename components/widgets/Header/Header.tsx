@@ -45,13 +45,13 @@ const Header = () => {
                     <div className="flex items-center gap-4">
                         <Button 
                             variant="ghost" 
-                            className="text-white/80 hover:text-white hover:bg-white/5 h-11 px-6 rounded-full transition-all duration-300"
+                            className="text-white/80 hover:text-white hover:bg-white/5 h-11 px-6 rounded-[14px] transition-all duration-300"
                         >
                             Вхід
                         </Button>
                         <Button 
                             variant="default"
-                            className="bg-[rgb(195,187,175)] hover:bg-white/20 text-black h-11 px-6 font-medium rounded-full transition-all duration-300 backdrop-blur-sm"
+                            className="bg-[rgb(195,187,175)] hover:bg-white/20 text-black h-11 px-6 font-medium rounded-[14px] transition-all duration-300 backdrop-blur-sm"
                         >
                             Реєстрація
                         </Button>
