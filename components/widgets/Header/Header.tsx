@@ -5,7 +5,7 @@ import { FiSearch, FiFilm, FiCompass, FiStar } from 'react-icons/fi';
 
 const Header = () => {
     return (
-        <div className='fixed w-full top-0 z-50 bg-black/40 backdrop-blur-xl border-b border-white/[0.08]'>
+        <div className='w-full top-0 z-100 bg-black/40 backdrop-blur-xl border-b border-white/[0.08]'>
             <div className="container mx-auto py-4">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center gap-10">
@@ -27,7 +27,7 @@ const Header = () => {
                     </div>
                     
                     <nav className="flex items-center space-x-8">
-                        {['/', '/movies', '/booking'].map((path, index) => (
+                        {['/', '/catalog', '/booking'].map((path, index) => (
                             <Link 
                                 key={path}
                                 className='group relative text-white/70 hover:text-white transition-all duration-200 flex items-center gap-2 text-[15px] py-2' 
@@ -36,7 +36,7 @@ const Header = () => {
                                 {index === 0 && <FiCompass className="w-5 h-5" />}
                                 {index === 1 && <FiFilm className="w-5 h-5" />}
                                 {index === 2 && <FiStar className="w-5 h-5" />}
-                                {['Головна', 'Фільми', 'Бронювання'][index]}
+                                {['Головна', 'Каталог', 'Бронювання'][index]}
                                 <span className="absolute bottom-0 left-0 w-full h-[0px] bg-[rgb(195,187,175)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                             </Link>
                         ))}
@@ -46,21 +46,17 @@ const Header = () => {
                     <Link href="/login">
                         <Button 
                             variant="ghost" 
-                            className="text-white/80 hover:text-white hover:bg-white/5 h-11 px-6 rounded-[14px] transition-all duration-300"
+                            className="text-white/80 hover:text-white hover:bg-white/5 h-11 px-6 rounded-[12px] transition-all duration-300"
                         >
-                            <Link href="/login">
                             Вхід
-                            </Link>
                         </Button>
                         </Link>
                         <Link href="register">
                         <Button 
                             variant="default"
-                            className="bg-[rgb(195,187,175)] hover:bg-white/20 text-black h-11 px-6 font-medium rounded-[14px] transition-all duration-300 backdrop-blur-sm"
+                            className="bg-[rgb(195,187,175)] hover:bg-white/20 text-black h-11 px-6 font-medium rounded-[12px] transition-all duration-300 backdrop-blur-sm"
                         >
-                            <Link href="register">
                             Реєстрація
-                            </Link>
                         </Button>
                         </Link>
                     </div>
