@@ -106,6 +106,10 @@ body {
   }
 }
 
+.container {
+  max-width: 1500px;
+}
+
 .animate-fill {
   animation: fill 5s linear;
   width: 100%;
