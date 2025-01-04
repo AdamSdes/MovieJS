@@ -4,10 +4,12 @@ import * as React from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { FiPlay, FiStar, FiClock, FiCalendar } from 'react-icons/fi'
+import { FiPlay, FiStar, FiClock, FiCalendar, FiInfo } from 'react-icons/fi'
+import { useRouter } from 'next/navigation'
 
 interface MovieCardProps {
   movie: {
+    id: string;  // Make sure id is required
     title: string;
     image: string;
     rating: number;
@@ -22,6 +24,12 @@ const MotionDiv = motion.div;
 const MotionImage = motion.img;
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie, viewMode = 'grid' }) => {
+  const router = useRouter();
+
+  const handleNavigate = () => {
+    router.push(`/movie/${movie.id}`);
+  };
+
   const gridVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -64,11 +72,12 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, viewMode = 'grid' }) => {
   if (viewMode === 'list') {
     return (
       <MotionDiv
-        className="group relative backdrop-blur-xl overflow-hidden w-full"
+        className="group relative backdrop-blur-xl overflow-hidden w-full cursor-pointer"
         variants={listVariants}
         initial="hidden"
         animate="visible"
         whileHover="hover"
+        onClick={handleNavigate}
       >
         <div className="flex gap-6 bg-black/20 rounded-2xl border border-white/[0.08] p-4">
           {/* Image */}
@@ -126,12 +135,29 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, viewMode = 'grid' }) => {
                 <span className="text-sm text-white/40">Вартість квитка</span>
                 <p className="text-lg font-semibold text-[rgb(195,187,175)]">{movie.price}</p>
               </div>
-              <Button 
-                className="bg-[rgb(195,187,175)] hover:bg-white/20 text-black font-medium rounded-xl transition-all duration-300 group"
-              >
-                <FiPlay className="w-5 h-5 mr-2 group-hover:animate-pulse" />
-                Забронювати
-              </Button>
+              <div className="flex items-center gap-4">
+                <Button 
+                  className="bg-[rgb(195,187,175)] hover:bg-white/20 text-black font-medium rounded-xl transition-all duration-300 group"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Предотвращаем навигацию при клике на кнопку
+                    // Здесь логика бронирования
+                  }}
+                >
+                  <FiPlay className="w-5 h-5 mr-2 group-hover:animate-pulse" />
+                  Забронювати
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-white/10 text-white hover:bg-white/5"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNavigate();
+                  }}
+                >
+                  <FiInfo className="w-5 h-5 mr-2" />
+                  Детальніше
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -141,11 +167,12 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, viewMode = 'grid' }) => {
 
   return (
     <MotionDiv
-      className="group relative backdrop-blur-xl overflow-hidden w-full"
+      className="group relative backdrop-blur-xl overflow-hidden w-full cursor-pointer"
       variants={gridVariants}
       initial="hidden"
       animate="visible"
       whileHover="hover"
+      onClick={handleNavigate}
     >
       {/* Image Container */}
       <div className="relative aspect-[6/7] overflow-hidden">
@@ -162,9 +189,24 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, viewMode = 'grid' }) => {
         <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 gap-3 p-4">
           <Button 
             className="bg-[rgb(195,187,175)] hover:bg-white/20 text-black font-medium rounded-xl transition-all duration-300 group"
+            onClick={(e) => {
+              e.stopPropagation();
+              // Здесь логика бронирования
+            }}
           >
             <FiPlay className="w-5 h-5 mr-2 group-hover:animate-pulse" />
             Забронювати
+          </Button>
+          <Button
+            variant="outline"
+            className="border-white/10 text-white hover:bg-white/5"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleNavigate();
+            }}
+          >
+            <FiInfo className="w-5 h-5 mr-2" />
+            Детальніше
           </Button>
         </div>
 

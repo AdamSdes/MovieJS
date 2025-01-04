@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import MovieCard from '../MovieCard/MovieCard'
 import { Button } from '@/components/ui/button'
@@ -17,6 +17,7 @@ const years = ["2024", "2023", "2022", "2021", "2020"];
 
 const movies = [
     {
+        id: "spider-man-1",
         title: "Людина-павук: Немає шляху додому",
         image: "/peakpx.jpg",
         rating: 8.4,
@@ -25,6 +26,7 @@ const movies = [
         price: "300 грн"
     },
     {
+        id: "spider-man-2",
         title: "Людина-павук: Немає шляху додому",
         image: "/peakpx.jpg",
         rating: 8.4,
@@ -33,14 +35,7 @@ const movies = [
         price: "300 грн"
     },
     {
-        title: "Людина-павук: Немає шляху додому",
-        image: "/peakpx.jpg",
-        rating: 8.4,
-        duration: "2:28",
-        genre: "Боевик",
-        price: "300 грн"
-    },
-    {
+        id: "spider-man-3",
         title: "Людина-павук: Немає шляху додому",
         image: "/peakpx.jpg",
         rating: 8.4,
@@ -57,6 +52,17 @@ const MovieList = () => {
     const [selectedYears, setSelectedYears] = useState<string[]>([])
     const [activePriceRange, setActivePriceRange] = useState<string>('all')
     const [activeSection, setActiveSection] = useState<string | null>('genres')
+    const [filteredMovies, setFilteredMovies] = useState(movies)
+
+    // Handle filtering
+    useEffect(() => {
+        const filtered = movies.filter(movie => {
+            const matchesGenre = selectedGenres.length === 0 || 
+                selectedGenres.some(genre => movie.genre.includes(genre));
+            return matchesGenre;
+        });
+        setFilteredMovies(filtered);
+    }, [selectedGenres]);
 
     return (
         <div className="relative isolate min-h-[calc(100vh-80px)]">
@@ -291,60 +297,41 @@ const MovieList = () => {
                                         <option>За новизною</option>
                                     </select>
                                 </div>
-
-                                <div className="flex gap-1 bg-black/40 backdrop-blur-xl border border-white/[0.08] rounded-lg p-1">
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        onClick={() => setViewMode('grid')}
-                                        className={`${viewMode === 'grid' ? 'bg-[rgb(195,187,175)] text-black' : 'text-white/60'} rounded-lg`}
-                                    >
-                                        <FiGrid className="w-5 h-5" />
-                                    </Button>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        onClick={() => setViewMode('list')}
-                                        className={`${viewMode === 'list' ? 'bg-[rgb(195,187,175)] text-black' : 'text-white/60'} rounded-lg`}
-                                    >
-                                        <FiList className="w-5 h-5" />
-                                    </Button>
-                                </div>
                             </div>
                         </div>
 
                         {/* Movies grid with updated layout */}
-                        <AnimatePresence mode="wait">
+                        <AnimatePresence mode="wait" initial={false}>
                             <motion.div 
-                                key={viewMode}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.3 }}
+                                key={`container-${viewMode}`}
                                 className={`grid gap-6 ${
                                     viewMode === 'grid' 
                                         ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
                                         : 'grid-cols-1 gap-y-4'
                                 }`}
+                                layout
                             >
-                                {movies.map((movie, idx) => (
-                                    <motion.div
-                                        key={idx}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -20 }}
-                                        transition={{ 
-                                            duration: 0.5,
-                                            delay: idx * 0.1,
-                                            ease: [0.25, 0.1, 0.25, 1] 
-                                        }}
-                                    >
-                                        <MovieCard 
-                                            movie={movie} 
-                                            viewMode={viewMode}
-                                        />
-                                    </motion.div>
-                                ))}
+                                <AnimatePresence mode="popLayout">
+                                    {filteredMovies.map((movie) => (
+                                        <motion.div
+                                            key={`movie-${movie.id}-${viewMode}`}
+                                            layout
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0.8 }}
+                                            transition={{ 
+                                                duration: 0.3,
+                                                ease: "easeInOut"
+                                            }}
+                                        >
+                                            <MovieCard 
+                                                key={movie.id}
+                                                movie={movie} 
+                                                viewMode={viewMode}
+                                            />
+                                        </motion.div>
+                                    ))}
+                                </AnimatePresence>
                             </motion.div>
                         </AnimatePresence>
 
