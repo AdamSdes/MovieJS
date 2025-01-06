@@ -18,29 +18,29 @@ const years = ["2024", "2023", "2022", "2021", "2020"];
 const movies = [
     {
         id: "spider-man-1",
-        title: "Людина-павук: Немає шляху додому",
+        title: "Оппенгеймер",
         image: "/peakpx.jpg",
         rating: 8.4,
         duration: "2:28",
-        genre: "Боевик",
+        genre: "Документальний",
         price: "300 грн"
     },
     {
         id: "spider-man-2",
-        title: "Людина-павук: Немає шляху додому",
+        title: "Аватар:Шлях води",
         image: "/peakpx.jpg",
         rating: 8.4,
-        duration: "2:28",
-        genre: "Боевик",
+        duration: "2:40",
+        genre: "Фантастика",
         price: "300 грн"
     },
     {
         id: "spider-man-3",
-        title: "Людина-павук: Немає шляху додому",
+        title: "Месники:Фінал",
         image: "/peakpx.jpg",
         rating: 8.4,
-        duration: "2:28",
-        genre: "Боевик",
+        duration: "3:10",
+        genre: "Бойовик",
         price: "300 грн"
     },
     // ...add more movies

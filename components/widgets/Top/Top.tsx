@@ -9,28 +9,28 @@ import { motion } from 'framer-motion'
 // Список фильмов с данными
 const movies = [
     {
-        year: "2021",
+        year: "2022",
         duration: "2 ч 28 мин",
-        title: "Людина-павук: Немає шляху додому",
-        genre: "Боевик / Научная фантастика",
+        title: "Оппенгеймер",
+        genre: "Бойовик / Документальні",
         price: "300 грн",
         image: "/peakpx.jpg"
     },
     {
-        year: "2022",
+        year: "2023",
         duration: "3 ч 1 мин",
-        title: "Аватар: Путь воды",
-        genre: "Фэнтези / Приключения",
+        title: "Аватар: Шлях води",
+        genre: "Фэнтезі / Пригодницькі",
         price: "350 грн",
-        image: "https://vkplay.ru/hotbox/content_files/news/2022/04/21/f2908b73885049118001c6fe23b8cc62.jpg"
+        image: "https://focus.ua/static/storage/originals/c/18/d58c894d900f6253e46d36bbee33218c.jpg"
     },
     {
-        year: "2019",
+        year: "2020",
         duration: "2 ч 32 мин",
-        title: "Мстители: Финал",
-        genre: "Боевик / Фантастика",
+        title: "Месники: Фінал",
+        genre: "Бойовик / Фантастика",
         price: "400 грн",
-        image: "https://cdn.forbes.ru/files/story_images/ae-ms-twitter-moments-05.jpg__1563701577__63799.jpg"
+        image: "https://itc.ua/wp-content/uploads/2024/10/thumb-1920-1053091.jpg"
     }
 ];
 
